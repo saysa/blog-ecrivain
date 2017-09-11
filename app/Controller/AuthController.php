@@ -2,7 +2,9 @@
 
 namespace app\Controller;
 
+use app\Repository\UserRepository;
 use Framework\Controller;
+use Framework\Registry;
 use Framework\View;
 use Helper\Auth;
 
@@ -37,7 +39,12 @@ class AuthController extends Controller {
 				if ( ! $auth->match( $login, $password ) ) {
 					$this->_actionView->set( "password_error", "Identifiants incorrects" );
 				} else {
-					// TODO : set user to session
+
+					$dm = new UserRepository();
+
+					$session = Registry::get( "session" );
+					$session->set( "user", $dm->getByLoginPassword( $login, $password ) );
+
 				}
 			}
 		}

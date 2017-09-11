@@ -38,4 +38,27 @@ class UserRepository extends Repository {
 	public function delete( Entity $form ) {
 		// TODO: Implement delete() method.
 	}
+
+	/**
+	 * Get a User by login and password
+	 *
+	 * @param $login
+	 * @param $password
+	 *
+	 * @return User|bool
+	 */
+	public function getByLoginPassword( $login, $password ) {
+
+		/** @var \PDO $pdo */
+		$pdo = $this->_pdo;
+
+		$st   = $pdo->query( "SELECT id, login, password, created, modified FROM user WHERE login = '" . $login . "' AND password = '" . $password . "'" );
+		$data = $st->fetch( \PDO::FETCH_ASSOC );
+
+		if ( $data ) {
+			return new User( $data );
+		}
+
+		return false;
+	}
 }
