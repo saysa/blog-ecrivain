@@ -41,5 +41,10 @@ class Routes {
 			"controller" => "blog",
 			"action"     => "show",
 		),
+		array(
+			"pattern"    => "_admin_/login",
+			"controller" => "auth",
+			"action"     => "login",
+		),
 	);
 }
