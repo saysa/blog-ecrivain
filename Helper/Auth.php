@@ -8,6 +8,32 @@ class Auth {
 	protected $_error_password;
 
 	/**
+	 * Validator
+	 *
+	 * @param $login
+	 * @param $password
+	 *
+	 * @return bool
+	 */
+	public function validate( $login, $password ) {
+
+		if ( empty( trim( $login ) ) ) {
+
+			$this->setErrorLogin( true );
+		}
+
+		if ( empty( trim( $password ) ) ) {
+			$this->setErrorPassword( true );
+		}
+
+		if ( $this->getErrorLogin() || $this->getErrorPassword() ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * @return mixed
 	 */
 	public function getErrorLogin() {
