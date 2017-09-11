@@ -41,6 +41,19 @@ class Session {
 		return $this;
 	}
 
+	/**
+	 * Unset a Session variable by key
+	 *
+	 * @param $key
+	 *
+	 * @return $this
+	 */
+	public function erase( $key ) {
+		unset( $_SESSION[ $this->_prefix . $key ] );
+
+		return $this;
+	}
+
 	public function __destruct() {
 		session_commit();
 	}
