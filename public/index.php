@@ -22,6 +22,10 @@ try {
 	if ( $config['debug'] ) $twig->addExtension( new Twig_Extension_Debug() );
 	\Framework\Registry::set( "twig", $twig );
 
+	// set the Session in the Registry
+	$session = new \Framework\Session();
+	\Framework\Registry::set( "session", $session );
+
 	$router = new \Framework\Router( array(
 		"url" => trim( $_SERVER['REQUEST_URI'], "/" ),
 	) );
