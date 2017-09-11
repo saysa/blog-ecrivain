@@ -27,6 +27,20 @@ class Session {
 		return $default;
 	}
 
+	/**
+	 * Set a Session variable
+	 *
+	 * @param $key
+	 * @param $value
+	 *
+	 * @return $this
+	 */
+	public function set( $key, $value ) {
+		$_SESSION[ $this->_prefix . $key ] = $value;
+
+		return $this;
+	}
+
 	public function __destruct() {
 		session_commit();
 	}
