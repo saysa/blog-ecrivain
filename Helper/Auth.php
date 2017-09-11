@@ -2,6 +2,8 @@
 
 namespace Helper;
 
+use app\Repository\UserRepository;
+
 class Auth {
 
 	protected $_error_login;
@@ -31,6 +33,28 @@ class Auth {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Checks if a couple $login / $password matches a User in the database
+	 *
+	 * @param $login
+	 * @param $password
+	 *
+	 * @return bool
+	 */
+	public function match( $login, $password ) {
+
+		$dm    = new UserRepository();
+		$users = $dm->getList();
+
+		foreach ( $users as $user ) {
+			if ( $login == $user->getLogin() && $password == $user->getPassword() ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

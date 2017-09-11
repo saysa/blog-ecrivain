@@ -33,6 +33,12 @@ class AuthController extends Controller {
 				if ( $auth->getErrorPassword() ) {
 					$this->_actionView->set( "password_error", "Merci de saisir votre mot de passe" );
 				}
+			} else {
+				if ( ! $auth->match( $login, $password ) ) {
+					$this->_actionView->set( "password_error", "Identifiants incorrects" );
+				} else {
+					// TODO : set user to session
+				}
 			}
 		}
 	}
