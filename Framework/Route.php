@@ -7,6 +7,7 @@ class Route {
 	protected $_pattern;
 	protected $_controller;
 	protected $_action;
+	protected $_name;
 	protected $_parameters = array();
 
 	public function __construct( $options = array() ) {
@@ -125,5 +126,12 @@ class Route {
 	 */
 	public function getParameters() {
 		return $this->_parameters;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getName() {
+		return $this->_name;
 	}
 }
