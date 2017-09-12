@@ -35,8 +35,20 @@ class Router {
 
 	}
 
+	/**
+	 * Get a Routes-List by name
+	 *
+	 * @return array
+	 */
 	public function getRoutesByName() {
 
+		$routes = array();
+
+		foreach ( $this->_routes as $route ) {
+			$routes[ $route->getName() ] = $route;
+		}
+
+		return $routes;
 	}
 
 	public function getRoutes() {
